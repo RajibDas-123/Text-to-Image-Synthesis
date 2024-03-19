@@ -55,7 +55,7 @@ class Trainer(object):
         self.optimD = torch.optim.Adam(self.discriminator.parameters(), lr=self.lr, betas=(self.beta1, 0.999))
         self.optimG = torch.optim.Adam(self.generator.parameters(), lr=self.lr, betas=(self.beta1, 0.999))
 
-        self.logger = Logger(vis_screen)
+        # self.logger = Logger(vis_screen)
         self.checkpoints_path = 'checkpoints'
         self.save_path = save_path
         self.type = type
@@ -160,10 +160,10 @@ class Trainer(object):
 
                 gen_iteration += 1
 
-                self.logger.draw(right_images, fake_images)
-                self.logger.log_iteration_wgan(epoch, gen_iteration, d_loss, g_loss, real_loss, fake_loss)
+                # self.logger.draw(right_images, fake_images)
+                # self.logger.log_iteration_wgan(epoch, gen_iteration, d_loss, g_loss, real_loss, fake_loss)
                 
-            self.logger.plot_epoch(gen_iteration)
+            # self.logger.plot_epoch(gen_iteration)
 
             if (epoch+1) % 50 == 0:
                 Utils.save_checkpoint(self.discriminator, self.generator, self.checkpoints_path, epoch)
@@ -251,10 +251,11 @@ class Trainer(object):
                 self.optimG.step()
 
                 if iteration % 5 == 0:
-                    self.logger.log_iteration_gan(epoch,d_loss, g_loss, real_score, fake_score)
-                    self.logger.draw(right_images, fake_images)
+                    # self.logger.log_iteration_gan(epoch,d_loss, g_loss, real_score, fake_score)
+                    # self.logger.draw(right_images, fake_images)
+                    print()
 
-            self.logger.plot_epoch_w_scores(epoch)
+            # self.logger.plot_epoch_w_scores(epoch)
 
             if (epoch) % 10 == 0:
                 Utils.save_checkpoint(self.discriminator, self.generator, self.checkpoints_path, self.save_path, epoch)
@@ -332,10 +333,10 @@ class Trainer(object):
 
              gen_iteration += 1
 
-             self.logger.draw(right_images, fake_images)
-             self.logger.log_iteration_wgan(epoch, gen_iteration, d_loss, g_loss, real_loss, fake_loss)
+            #  self.logger.draw(right_images, fake_images)
+            #  self.logger.log_iteration_wgan(epoch, gen_iteration, d_loss, g_loss, real_loss, fake_loss)
 
-         self.logger.plot_epoch(gen_iteration)
+        #  self.logger.plot_epoch(gen_iteration)
 
          if (epoch + 1) % 50 == 0:
              Utils.save_checkpoint(self.discriminator, self.generator, self.checkpoints_path, epoch)
@@ -410,10 +411,11 @@ class Trainer(object):
                 self.optimG.step()
 
                 if iteration % 5 == 0:
-                    self.logger.log_iteration_gan(epoch, d_loss, g_loss, real_score, fake_score)
-                    self.logger.draw(right_images, fake_images)
+                    # self.logger.log_iteration_gan(epoch, d_loss, g_loss, real_score, fake_score)
+                    # self.logger.draw(right_images, fake_images)
+                    print()
 
-            self.logger.plot_epoch_w_scores(iteration)
+            # self.logger.plot_epoch_w_scores(iteration)
 
             if (epoch) % 50 == 0:
                 Utils.save_checkpoint(self.discriminator, self.generator, self.checkpoints_path, epoch)
@@ -435,7 +437,7 @@ class Trainer(object):
             noise = noise.view(noise.size(0), 100, 1, 1)
             fake_images = self.generator(right_embed, noise)
 
-            self.logger.draw(right_images, fake_images)
+            # self.logger.draw(right_images, fake_images)
 
             for image, t in zip(fake_images, txt):
                 im = Image.fromarray(image.data.mul_(127.5).add_(127.5).byte().permute(1, 2, 0).cpu().numpy())
