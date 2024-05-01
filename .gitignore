@@ -5,3 +5,6 @@ dataset/*
 .idea/
 checkpoints/*
 results/*
+/*/*/*.h5
+/Diffusion/cub-model/*
+/Diffusion/flower-model/*

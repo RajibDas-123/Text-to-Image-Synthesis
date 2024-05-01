@@ -1,0 +1,9 @@
+# Config to create a white theme in Streamlit
+
+[theme]
+base="light"
+primaryColor="#e694ff"
+backgroundColor="#ffffff"
+secondaryBackgroundColor="#f0f2f6"
+textColor="#262730"
+font="sans serif"
